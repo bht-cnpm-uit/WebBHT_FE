@@ -16,7 +16,7 @@ export default function Home() {
                                 <Button
                                     square
                                     rounded
-                                    href="fb.com"
+                                    href="https://fb.com/bhtcnpm"
                                     className="!bg-blue-500 hover:!bg-blue-600"
                                 >
                                     F
@@ -57,6 +57,21 @@ export default function Home() {
                     </div>
                     <div className="aspect-video w-1/2">
                         <img src="https://picsum.photos/id/20/800/500" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Section 1 */}
+            <div className="px-p-body">
+                <div className="mx-auto max-w-container py-8">
+                    <header className="w-full text-center">
+                        <h2 className="text-3xl font-semibold uppercase text-primary">
+                            Tiêu đề gì đó
+                        </h2>
+                        <p>Mô tả đơn giản gì đó về section này</p>
+                    </header>
+                    <div className="mt-5 flex h-[300px] items-center justify-center bg-gray-100">
+                        Nội dung gì đó ở đây
                     </div>
                 </div>
             </div>

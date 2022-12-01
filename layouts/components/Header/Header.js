@@ -22,7 +22,9 @@ function Header() {
     return (
         <header className="fixed flex h-h-header w-full items-center justify-between bg-bg px-p-body shadow">
             {/* LOGO */}
-            <div className="flex flex-1 items-center">LOGO</div>
+            <div className="flex flex-1 items-center">
+                <img src="/images/logo.png" className="h-11 w-11" alt="logo" />
+            </div>
 
             {/* MENU */}
             <nav>
