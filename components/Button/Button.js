@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 function LinkPassComp({ className, children, ...passProps }) {
     return (
-        <Link {...passProps}>
-            <a className={className}>{children}</a>
+        <Link {...passProps} className={className}>
+            {children}
         </Link>
     );
 }

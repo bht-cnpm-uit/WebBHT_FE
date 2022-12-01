@@ -1,8 +1,8 @@
 @layer base {
     :root {
-        --clr-primary: 199deg 89% 48%;
-        --clr-primary-dark: 200deg 98% 39%;
-        --clr-primary-light: 198deg 93% 60%;
+        --clr-primary: 239deg 84% 67%;
+        --clr-primary-dark: 243deg 75% 59%;
+        --clr-primary-light: 234deg 89% 74%;
         --clr-text: 217deg 19% 27%;
         --clr-text-dark: 144deg 37% 7%;
         --clr-light-gray: 0deg 0% 33%;
@@ -10,7 +10,7 @@
         --clr-bg: 144deg 0% 100%;
         --h-header: 3.5rem;
         --p-body: 2.75rem;
-        --max-container: 92rem;
+        --max-container: 83rem;
     }
     @screen md {
         :root {
