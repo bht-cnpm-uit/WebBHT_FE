@@ -19,23 +19,23 @@ export default function Home() {
                                     href="https://fb.com/bhtcnpm"
                                     className="!bg-blue-500 hover:!bg-blue-600"
                                 >
-                                    F
+                                    <i class="fa-brands fa-facebook-f"></i>
                                 </Button>
                                 <Button
                                     square
                                     rounded
-                                    href="fb.com"
+                                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                                     className="!bg-red-500 hover:!bg-red-600"
                                 >
-                                    I
+                                    <i class="fa-brands fa-youtube"></i>
                                 </Button>
                                 <Button
                                     square
                                     rounded
-                                    href="fb.com"
+                                    href="https://www.instagram.com/english.with.bht"
                                     className="!bg-purple-500 hover:!bg-purple-600"
                                 >
-                                    I
+                                    <i class="fa-brands fa-instagram"></i>
                                 </Button>
                             </div>
                         </div>
