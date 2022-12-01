@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import Button from '../components/Button';
 import DefaultLayout from '../layouts/DefaultLayout';
 
-export default function Home() {
+function Home() {
     return (
         <DefaultLayout>
             {/* Hero section */}
@@ -19,7 +21,7 @@ export default function Home() {
                                     href="https://fb.com/bhtcnpm"
                                     className="!bg-blue-500 hover:!bg-blue-600"
                                 >
-                                    <i class="fa-brands fa-facebook-f"></i>
+                                    <FontAwesomeIcon icon={faFacebookF} />
                                 </Button>
                                 <Button
                                     square
@@ -27,7 +29,7 @@ export default function Home() {
                                     href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                                     className="!bg-red-500 hover:!bg-red-600"
                                 >
-                                    <i class="fa-brands fa-youtube"></i>
+                                    <FontAwesomeIcon icon={faYoutube} />
                                 </Button>
                                 <Button
                                     square
@@ -35,7 +37,7 @@ export default function Home() {
                                     href="https://www.instagram.com/english.with.bht"
                                     className="!bg-purple-500 hover:!bg-purple-600"
                                 >
-                                    <i class="fa-brands fa-instagram"></i>
+                                    <FontAwesomeIcon icon={faInstagram} />
                                 </Button>
                             </div>
                         </div>
@@ -44,9 +46,7 @@ export default function Home() {
                             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                             commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                            occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum
+                            velit esse cillum dolore eu fugiat
                         </p>
                         <div className="flex space-x-2">
                             <Button lg>Nút gì đó</Button>
@@ -78,3 +78,5 @@ export default function Home() {
         </DefaultLayout>
     );
 }
+
+export default Home;

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import NavLink from '../../../components/NavLink';
 import Button from '../../../components/Button';
 
@@ -40,8 +42,31 @@ function Header() {
             </nav>
 
             {/* ACTION BUTTON GROUP */}
-            <div className="flex flex-1 justify-end">
-                <Button>Nút gì đó</Button>
+            <div className="flex flex-1 justify-end space-x-2">
+                <Button
+                    square
+                    rounded
+                    href="https://fb.com/bhtcnpm"
+                    className="!bg-blue-500 hover:!bg-blue-600"
+                >
+                    <FontAwesomeIcon icon={faFacebookF} />
+                </Button>
+                <Button
+                    square
+                    rounded
+                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    className="!bg-red-500 hover:!bg-red-600"
+                >
+                    <FontAwesomeIcon icon={faYoutube} />
+                </Button>
+                <Button
+                    square
+                    rounded
+                    href="https://www.instagram.com/english.with.bht"
+                    className="!bg-purple-500 hover:!bg-purple-600"
+                >
+                    <FontAwesomeIcon icon={faInstagram} />
+                </Button>
             </div>
         </header>
     );
