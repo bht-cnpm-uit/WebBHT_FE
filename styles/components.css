@@ -1,2 +1,19 @@
 @layer components {
+    .btn {
+        @apply flex items-center justify-center rounded py-[0.375rem] px-4 transition-colors;
+    }
+    .btn.btn-contain {
+        @apply text-white;
+    }
+    .btn.btn-contain.btn-primary {
+        @apply bg-primary hover:bg-primary-dark;
+    }
+
+    .btn.btn-outline.btn-primary {
+        @apply text-primary ring-1 ring-primary hover:bg-primary hover:text-white;
+    }
+
+    .btn.btn-square.btn-md {
+        @apply w-[2.25rem];
+    }
 }

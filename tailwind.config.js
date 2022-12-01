@@ -20,11 +20,15 @@ module.exports = {
                 'primary-light': 'hsl(var(--clr-primary-light) / <alpha-value>)',
                 text: 'hsl(var(--clr-text) / <alpha-value>)',
                 'text-dark': 'hsl(var(--clr-text-dark) / <alpha-value>)',
+                bg: 'hsl(var(--clr-bg) / <alpha-value>)',
                 white: 'hsl(var(--clr-white) / <alpha-value>)',
                 transparent: 'transparent',
                 current: 'currentColor',
             },
             zIndex: {},
+            boxShadow: {
+                test: '0 0 1px 1px red',
+            },
         },
         screens: {
             xxl: { min: '1400px' },
