@@ -60,7 +60,7 @@ const MEMBERS = [
         year: '2020',
         members: [
             {
-                name: 'Nguyễn Văn A',
+                name: 'Bùi Tống Minh Châu',
                 desciption: 'Thành viên',
                 image: 'https://picsum.photos/id/30/100/100',
             },
@@ -94,11 +94,31 @@ const MEMBERS = [
                 desciption: 'Thành viên',
                 image: 'https://picsum.photos/id/30/100/100',
             },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
         ],
     },
     {
         year: '2022',
         members: [
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
             {
                 name: 'Nguyễn Văn A',
                 desciption: 'Thành viên',
@@ -221,19 +241,19 @@ function About() {
 
                                     {/* CARDS */}
                                     <div className="relative z-10 pt-8 pb-10">
-                                        <div className="flex justify-center space-x-4 bg-bg py-2">
+                                        <div className="flex flex-wrap justify-center bg-bg py-2">
                                             {item.members.map((member, index) => (
-                                                <div className="flex h-[200px] w-[200px] flex-col items-center rounded border p-4 shadow">
-                                                    <div className="h-18 w-18 overflow-hidden rounded-full">
+                                                <div className="m-2 flex w-[260px] flex-col items-center rounded-md border-t-4 border-primary-light py-6 text-center shadow-md">
+                                                    <div className="h-32 w-32 overflow-hidden rounded-full">
                                                         <img
                                                             src={member.image}
-                                                            className="object-cover"
+                                                            className="h-full w-full object-cover"
                                                         />
                                                     </div>
-                                                    <p className="mt-2 text-lg font-semibold text-primary">
+                                                    <p className="mt-4 text-lg font-semibold text-primary-dark">
                                                         {member.name}
                                                     </p>
-                                                    <p className="">{member.desciption}</p>
+                                                    <p className="mt-1">{member.desciption}</p>
                                                 </div>
                                             ))}
                                         </div>
