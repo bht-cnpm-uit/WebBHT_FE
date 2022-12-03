@@ -8,8 +8,9 @@ function Home() {
         <DefaultLayout>
             {/* Hero section */}
             <div className="px-p-body">
-                <div className="mx-auto flex max-w-container py-16">
-                    <div className="mr-5 w-1/2 space-y-6">
+                <div className="mx-auto flex max-w-container py-16 md:flex-col">
+                    {/* CONTENT */}
+                    <div className="mr-5 w-1/2 space-y-6 md:w-full">
                         <div>
                             <h2 className="text-3xl font-bold text-primary">
                                 BAN HỌC TẬP <br /> ĐOÀN KHOA CÔNG NGHỆ PHẦN MỀM
@@ -55,7 +56,9 @@ function Home() {
                             </Button>
                         </div>
                     </div>
-                    <div className="aspect-video w-1/2">
+
+                    {/* SLIDE */}
+                    <div className="aspect-video w-1/2 md:mt-10 md:w-full">
                         <img src="https://picsum.photos/id/20/800/500" />
                     </div>
                 </div>

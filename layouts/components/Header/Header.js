@@ -29,7 +29,7 @@ function Header() {
             </div>
 
             {/* MENU */}
-            <nav>
+            <nav className="md:hidden">
                 {MENU.map((menu, index) => (
                     <NavLink
                         key={index}
