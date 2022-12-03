@@ -55,6 +55,69 @@ const ACTIVITIES = [
     },
 ];
 
+const MEMBERS = [
+    {
+        year: '2020',
+        members: [
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+        ],
+    },
+    {
+        year: '2021',
+        members: [
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+        ],
+    },
+    {
+        year: '2022',
+        members: [
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+            {
+                name: 'Nguyễn Văn A',
+                desciption: 'Thành viên',
+                image: 'https://picsum.photos/id/30/100/100',
+            },
+        ],
+    },
+];
+
 function About() {
     return (
         <DefaultLayout>
@@ -129,6 +192,37 @@ function About() {
                                         className="text-lg md:text-base"
                                         dangerouslySetInnerHTML={{ __html: activity.content }}
                                     ></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Section THANH VIEN */}
+            <div className="px-p-body py-10">
+                <div className="mx-auto max-w-container">
+                    <header className="w-full text-center">
+                        <h2 className="text-3xl font-semibold uppercase text-primary">
+                            THÀNH VIÊN
+                        </h2>
+                    </header>
+                    <div className="mt-10 flex w-full flex-col items-center">
+                        {MEMBERS.map((item, index) => (
+                            <div key={index} className="mt-5 w-full">
+                                <div className="mb-2 text-center text-4xl font-extrabold tracking-widest text-primary">
+                                    {item.year}
+                                </div>
+                                <div className="relative">
+                                    {/* LINE */}
+                                    <div className="absolute top-0 bottom-0 left-1/2 w-0 border-r border-primary">
+                                        <div className="absolute top-0 left-0 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-bg"></div>
+                                    </div>
+
+                                    {/* CARDS */}
+                                    <div className="relative z-10 pt-8 pb-10">
+                                        <div className="h-[300px] bg-red-500"></div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
