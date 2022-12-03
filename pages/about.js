@@ -79,7 +79,7 @@ function About() {
                     <div className="flex flex-wrap justify-center">
                         {STATISTICS.map((item, index) => (
                             <div key={index} className="w-64 p-4 sm:w-60">
-                                <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-medium">
+                                <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-normal">
                                     {item.number + (item.plus ? '+' : '')}
                                 </p>
                                 <p className="mt-3 text-center sm:mt-1">{item.content}</p>
