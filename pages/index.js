@@ -92,7 +92,7 @@ function Home() {
                     {/* SLIDE */}
                     <div className="relative max-h-fit w-1/2 md:mt-10 md:w-full ">
                         <Swiper
-                            className="aspect-video w-full overflow-hidden rounded-lg lg:aspect-[4/3] md:aspect-video sm:rounded-none"
+                            className="aspect-video w-full overflow-hidden rounded-lg lg:aspect-[4/3] md:aspect-video sm:aspect-[4/3] sm:rounded-none"
                             slidesPerView={1}
                             loop={true}
                             ref={swiperRef}
