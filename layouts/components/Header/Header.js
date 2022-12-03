@@ -35,7 +35,7 @@ function Header() {
     return (
         <header className="fixed flex h-h-header w-full items-center justify-between bg-bg px-p-body shadow">
             {/* LOGO */}
-            <Link href="/" className="flex flex-1 items-center">
+            <Link href="/" className="flex flex-1 items-center md:flex-initial">
                 <img src="/images/logo.png" className="h-11 w-11" alt="logo" />
             </Link>
 
