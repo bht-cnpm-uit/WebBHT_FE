@@ -25,7 +25,9 @@ module.exports = {
                 transparent: 'transparent',
                 current: 'currentColor',
             },
-            zIndex: {},
+            zIndex: {
+                header: 100,
+            },
             boxShadow: {
                 test: '0 0 1px 1px red',
             },
