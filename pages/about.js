@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { CountUp } from 'use-count-up';
 import Button from '../components/Button';
 import DefaultLayout from '../layouts/DefaultLayout';
 
@@ -80,7 +81,13 @@ function About() {
                         {STATISTICS.map((item, index) => (
                             <div key={index} className="w-64 p-4 sm:w-60">
                                 <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-normal">
-                                    {item.number + (item.plus ? '+' : '')}
+                                    <CountUp
+                                        end={item.number}
+                                        duration={2.5}
+                                        isCounting
+                                        updateInterval={0.03}
+                                    />
+                                    {item.plus ? '+' : ''}
                                 </p>
                                 <p className="mt-3 text-center sm:mt-1">{item.content}</p>
                             </div>
