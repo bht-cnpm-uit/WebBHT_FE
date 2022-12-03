@@ -221,7 +221,22 @@ function About() {
 
                                     {/* CARDS */}
                                     <div className="relative z-10 pt-8 pb-10">
-                                        <div className="h-[300px] bg-red-500"></div>
+                                        <div className="flex justify-center space-x-4 bg-bg py-2">
+                                            {item.members.map((member, index) => (
+                                                <div className="flex h-[200px] w-[200px] flex-col items-center rounded border p-4 shadow">
+                                                    <div className="h-18 w-18 overflow-hidden rounded-full">
+                                                        <img
+                                                            src={member.image}
+                                                            className="object-cover"
+                                                        />
+                                                    </div>
+                                                    <p className="mt-2 text-lg font-semibold text-primary">
+                                                        {member.name}
+                                                    </p>
+                                                    <p className="">{member.desciption}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
