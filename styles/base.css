@@ -21,7 +21,6 @@
     @screen sm {
         :root {
             --p-body: 1.25rem;
-            --max-container: 40rem;
         }
     }
     @screen xs {

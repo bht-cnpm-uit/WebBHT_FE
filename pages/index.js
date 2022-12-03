@@ -59,7 +59,7 @@ function Home() {
 
                     {/* SLIDE */}
                     <div className="aspect-video w-1/2 md:mt-10 md:w-full">
-                        <img src="https://picsum.photos/id/20/800/500" />
+                        <img src="https://picsum.photos/id/20/800/500" className="w-full" />
                     </div>
                 </div>
             </div>

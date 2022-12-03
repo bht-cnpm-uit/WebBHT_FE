@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Button from '../components/Button';
 import DefaultLayout from '../layouts/DefaultLayout';
 
@@ -26,6 +27,33 @@ const STATISTICS = [
     },
 ];
 
+const ACTIVITIES = [
+    {
+        image: 'https://picsum.photos/id/7/500/400',
+        heading: 'Training giữa kỳ, cuối kỳ',
+        content:
+            '<b>Lorem ipsum dolor sit amet, con exercitation ullamco </b> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat ',
+    },
+    {
+        image: 'https://picsum.photos/id/10/500/400',
+        heading: 'Hoạt động gì đó',
+        content:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    },
+    {
+        image: 'https://picsum.photos/id/20/500/400',
+        heading: 'Hoạt động gì đó',
+        content:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt u',
+    },
+    {
+        image: 'https://picsum.photos/id/30/500/400',
+        heading: 'Hoạt động gì đó',
+        content:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    },
+];
+
 function About() {
     return (
         <DefaultLayout>
@@ -42,7 +70,7 @@ function About() {
             </div>
             {/* Section 1 */}
             <div className="px-p-body py-10">
-                <div className="mx-auto max-w-container py-8">
+                <div className="mx-auto mt-8 max-w-container">
                     {/* <header className="w-full text-center">
                         <h2 className="text-3xl font-semibold uppercase text-primary">
                             BAN HỌC TẬP
@@ -55,6 +83,46 @@ function About() {
                                     {item.number + (item.plus ? '+' : '')}
                                 </p>
                                 <p className="mt-3 text-center sm:mt-1">{item.content}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Section HOAT DONG */}
+            <div className="px-p-body py-10 xs:px-0">
+                <div className="mx-auto max-w-container xs:max-w-none">
+                    <header className="w-full text-center">
+                        <h2 className="text-3xl font-semibold uppercase text-primary">HOẠT ĐỘNG</h2>
+                    </header>
+                    <div className="">
+                        {ACTIVITIES.map((activity, index) => (
+                            <div
+                                key={index}
+                                className={clsx('my-20 flex sm:my-10 sm:flex-col', {
+                                    'flex-row-reverse sm:flex-col': index % 2 !== 0,
+                                })}
+                            >
+                                <div className="w-2/5 sm:mb-4 sm:w-full">
+                                    <img
+                                        src={activity.image}
+                                        className="aspect-[3/2] w-full rounded-lg object-cover md:aspect-square sm:aspect-video xs:rounded-none"
+                                    />
+                                </div>
+                                <div
+                                    className={clsx('flex-1 space-y-2 xs:px-p-body', {
+                                        'mr-8 md:mr-4 sm:mr-0': index % 2 !== 0,
+                                        'ml-8 md:ml-4 sm:ml-0': index % 2 === 0,
+                                    })}
+                                >
+                                    <h3 className="text-2xl font-bold text-primary">
+                                        {activity.heading}
+                                    </h3>
+                                    <div
+                                        className="text-lg md:text-base"
+                                        dangerouslySetInnerHTML={{ __html: activity.content }}
+                                    ></div>
+                                </div>
                             </div>
                         ))}
                     </div>
