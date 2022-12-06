@@ -1,0 +1,31 @@
+[
+    {
+        "type": "folder",
+        "name": "Nhập môn lập trình",
+        "path": "nhapmonlaptrinh",
+        "children": [
+            {
+                "type": "image",
+                "name": "roadmap.png",
+                "path": "roadmap.png"
+            },
+            {
+                "type": "folder",
+                "name": "Đề thi",
+                "path": "dethi",
+                "children": [
+                    { "type": "file", "name": "Đề thi giữa kì.pdf", "path": "dethigiuaki.pdf" },
+                    { "type": "file", "name": "Đề thi cuối kì.pdf", "path": "dethicuoiki.pdf" }
+                ]
+            },
+            {
+                "type": "folder",
+                "name": "Lý thuyết",
+                "path": "lythuyet",
+                "children": [
+                    { "type": "file", "name": "Slide lý thuyết.pptx", "path": "slidelythuyet.pptx" }
+                ]
+            }
+        ]
+    }
+]
