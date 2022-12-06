@@ -243,7 +243,10 @@ function About() {
                                     <div className="relative z-10 pt-8 pb-10">
                                         <div className="flex flex-wrap justify-center bg-bg py-1">
                                             {item.members.map((member, index) => (
-                                                <div className="m-2 flex w-[260px] flex-col items-center rounded-md border-t-4 border-primary-light py-6 text-center shadow-md">
+                                                <div
+                                                    key={index}
+                                                    className="m-2 flex w-[260px] flex-col items-center rounded-md border-t-4 border-primary-light py-6 text-center shadow-md"
+                                                >
                                                     <div className="h-32 w-32 overflow-hidden rounded-full">
                                                         <img
                                                             src={member.image}
