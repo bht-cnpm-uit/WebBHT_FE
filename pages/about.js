@@ -138,7 +138,7 @@ const MEMBERS = [
     },
 ];
 
-function About() {
+function About({ statistics }) {
     return (
         <DefaultLayout>
             {/* BANNER */}
@@ -161,7 +161,7 @@ function About() {
                         </h2>
                     </header> */}
                     <div className="flex flex-wrap justify-center">
-                        {STATISTICS.map((item, index) => (
+                        {statistics?.map((item, index) => (
                             <div key={index} className="w-64 p-4 sm:w-60">
                                 <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-normal">
                                     <CountUp
@@ -272,3 +272,41 @@ function About() {
 }
 
 export default About;
+
+export async function getServerSideProps(context) {
+    let statistics = [];
+    try {
+        const res = await fetch(
+            `https://api.notion.com/v1/databases/c57d80260ba04016ac51030ee9f965f7/query`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: 'Bearer secret_I7pTTZSpNPYyQvTLCtiFkBDKCkbO5mhiatf9QU4CXBz',
+                    'Content-Type': 'application/json',
+                    'Notion-Version': '2022-06-28',
+                },
+                body: JSON.stringify({
+                    sorts: [
+                        {
+                            property: 'index',
+                            direction: 'ascending',
+                        },
+                    ],
+                }),
+            }
+        );
+        const data = await res.json();
+        statistics = data?.results?.map((item) => ({
+            number: item?.properties?.number?.number,
+            content: item?.properties?.name?.title?.[0]?.plain_text,
+            plus: item?.properties?.over?.checkbox,
+        }));
+        console.log(statistics);
+    } catch (error) {
+        console.log(error);
+    }
+
+    return {
+        props: { statistics }, // will be passed to the page component as props
+    };
+}
