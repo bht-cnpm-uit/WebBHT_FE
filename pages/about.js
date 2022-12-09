@@ -273,17 +273,17 @@ function About({ statistics }) {
 
 export default About;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     let statistics = [];
     try {
         const res = await fetch(
-            `https://api.notion.com/v1/databases/c57d80260ba04016ac51030ee9f965f7/query`,
+            `${process.env.NOTION_API}/databases/${process.env.STATISTICS_DB_ID}/query`,
             {
                 method: 'POST',
                 headers: {
-                    Authorization: 'Bearer secret_I7pTTZSpNPYyQvTLCtiFkBDKCkbO5mhiatf9QU4CXBz',
+                    Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
                     'Content-Type': 'application/json',
-                    'Notion-Version': '2022-06-28',
+                    'Notion-Version': process.env.NOTION_VERSION,
                 },
                 body: JSON.stringify({
                     sorts: [
@@ -301,12 +301,12 @@ export async function getServerSideProps(context) {
             content: item?.properties?.name?.title?.[0]?.plain_text,
             plus: item?.properties?.over?.checkbox,
         }));
-        console.log(statistics);
     } catch (error) {
         console.log(error);
     }
 
     return {
-        props: { statistics }, // will be passed to the page component as props
+        props: { statistics },
+        revalidate: 1,
     };
 }
