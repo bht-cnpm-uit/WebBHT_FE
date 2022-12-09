@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { CountUp } from 'use-count-up';
 import Button from '../components/Button';
+import MemberCard from '../components/MemberCard/MemberCard';
 import DefaultLayout from '../layouts/DefaultLayout';
 
 const STATISTICS = [
@@ -129,11 +130,6 @@ const MEMBERS = [
                 desciption: 'Thành viên',
                 image: 'https://picsum.photos/id/30/100/100',
             },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
         ],
     },
 ];
@@ -162,7 +158,7 @@ function About({ statistics }) {
                     </header> */}
                     <div className="flex flex-wrap justify-center">
                         {statistics?.map((item, index) => (
-                            <div key={index} className="w-64 p-4 sm:w-60">
+                            <div key={index} className="w-64 p-4 sm:w-56">
                                 <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-normal">
                                     <CountUp
                                         end={item.number}
@@ -243,21 +239,7 @@ function About({ statistics }) {
                                     <div className="relative z-10 pt-8 pb-10">
                                         <div className="flex flex-wrap justify-center bg-bg py-1">
                                             {item.members.map((member, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="m-2 flex w-[260px] flex-col items-center rounded-md border-t-4 border-primary-light py-6 text-center shadow-md"
-                                                >
-                                                    <div className="h-32 w-32 overflow-hidden rounded-full">
-                                                        <img
-                                                            src={member.image}
-                                                            className="h-full w-full object-cover"
-                                                        />
-                                                    </div>
-                                                    <p className="mt-4 text-lg font-semibold text-primary-dark">
-                                                        {member.name}
-                                                    </p>
-                                                    <p className="mt-1">{member.desciption}</p>
-                                                </div>
+                                                <MemberCard member={member} key={index} />
                                             ))}
                                         </div>
                                     </div>
