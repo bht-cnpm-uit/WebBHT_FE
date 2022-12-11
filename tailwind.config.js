@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        './pages/**/*.{js,ts,jsx,tsx}',
-        './components/**/*.{js,ts,jsx,tsx}',
-        './layouts/**/*.{js,ts,jsx,tsx}',
-    ],
+    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './layouts/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
             spacing: {
@@ -27,6 +23,8 @@ module.exports = {
             },
             zIndex: {
                 header: 100,
+                dialog: 9999,
+                'member-card': 50,
             },
             boxShadow: {
                 test: '0 0 1px 1px red',

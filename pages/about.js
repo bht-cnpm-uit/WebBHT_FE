@@ -160,12 +160,7 @@ function About({ statistics }) {
                         {statistics?.map((item, index) => (
                             <div key={index} className="w-64 p-4 sm:w-56">
                                 <p className="text-center text-5xl font-light text-primary sm:text-4xl sm:font-normal">
-                                    <CountUp
-                                        end={item.number}
-                                        duration={2.5}
-                                        isCounting
-                                        updateInterval={0.03}
-                                    />
+                                    <CountUp end={item.number} duration={2.5} isCounting updateInterval={0.03} />
                                     {item.plus ? '+' : ''}
                                 </p>
                                 <p className="mt-3 text-center sm:mt-1">{item.content}</p>
@@ -201,9 +196,7 @@ function About({ statistics }) {
                                         'ml-8 md:ml-4 sm:ml-0': index % 2 === 0,
                                     })}
                                 >
-                                    <h3 className="text-2xl font-bold text-primary">
-                                        {activity.heading}
-                                    </h3>
+                                    <h3 className="text-2xl font-bold text-primary">{activity.heading}</h3>
                                     <div
                                         className="text-lg md:text-base"
                                         dangerouslySetInnerHTML={{ __html: activity.content }}
@@ -219,9 +212,7 @@ function About({ statistics }) {
             <div className="px-p-body py-10">
                 <div className="mx-auto max-w-container">
                     <header className="w-full text-center">
-                        <h2 className="text-3xl font-semibold uppercase text-primary">
-                            THÀNH VIÊN
-                        </h2>
+                        <h2 className="text-3xl font-semibold uppercase text-primary">THÀNH VIÊN</h2>
                     </header>
                     <div className="mt-10 flex w-full flex-col items-center">
                         {MEMBERS.map((item, index) => (
@@ -236,7 +227,7 @@ function About({ statistics }) {
                                     </div>
 
                                     {/* CARDS */}
-                                    <div className="relative z-10 pt-8 pb-10">
+                                    <div className="relative pt-8 pb-10">
                                         <div className="flex flex-wrap justify-center bg-bg py-1">
                                             {item.members.map((member, index) => (
                                                 <MemberCard member={member} key={index} />
@@ -258,25 +249,22 @@ export default About;
 export async function getStaticProps(context) {
     let statistics = [];
     try {
-        const res = await fetch(
-            `${process.env.NOTION_API}/databases/${process.env.STATISTICS_DB_ID}/query`,
-            {
-                method: 'POST',
-                headers: {
-                    Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
-                    'Content-Type': 'application/json',
-                    'Notion-Version': process.env.NOTION_VERSION,
-                },
-                body: JSON.stringify({
-                    sorts: [
-                        {
-                            property: 'index',
-                            direction: 'ascending',
-                        },
-                    ],
-                }),
-            }
-        );
+        const res = await fetch(`${process.env.NOTION_API}/databases/${process.env.STATISTICS_DB_ID}/query`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Content-Type': 'application/json',
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+            body: JSON.stringify({
+                sorts: [
+                    {
+                        property: 'index',
+                        direction: 'ascending',
+                    },
+                ],
+            }),
+        });
         const data = await res.json();
         statistics = data?.results?.map((item) => ({
             number: item?.properties?.number?.number,
