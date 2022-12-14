@@ -21,7 +21,11 @@ function ParseNotionParagraphBlock({ children }) {
             );
         } else {
             return (
-                <Link key={index} href={richtextObj?.href}>
+                <Link
+                    key={index}
+                    href={richtextObj?.href}
+                    className="font-medium text-primary underline decoration-primary hover:decoration-2"
+                >
                     {richtextObj?.text?.content}
                 </Link>
             );
@@ -48,7 +52,11 @@ function ParseNotionBulletBlock({ children }) {
             );
         } else {
             return (
-                <Link key={index} href={richtextObj?.href}>
+                <Link
+                    key={index}
+                    href={richtextObj?.href}
+                    className="font-medium text-primary underline decoration-primary hover:decoration-2"
+                >
                     {richtextObj?.text?.content}
                 </Link>
             );
@@ -64,10 +72,11 @@ function ParseNotionBulletBlock({ children }) {
     );
 }
 
-function ParseNotionBlock({ children }) {
+function ParseNotionPageContent({ children }) {
+    console.log(children);
     return (
         <div>
-            {children?.results?.map((notionObj, index) => {
+            {children?.map((notionObj, index) => {
                 if (notionObj?.type === 'bulleted_list_item') {
                     return <ParseNotionBulletBlock key={index}>{notionObj}</ParseNotionBulletBlock>;
                 } else {
@@ -78,4 +87,4 @@ function ParseNotionBlock({ children }) {
     );
 }
 
-export default ParseNotionBlock;
+export default ParseNotionPageContent;

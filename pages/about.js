@@ -2,59 +2,8 @@ import clsx from 'clsx';
 import { CountUp } from 'use-count-up';
 import Button from '../components/Button';
 import MemberCard from '../components/MemberCard/MemberCard';
+import ParseNotionPageContent from '../components/ParseNotionPageContent/ParseNotionPageContent';
 import DefaultLayout from '../layouts/DefaultLayout';
-
-const STATISTICS = [
-    {
-        number: 50,
-        content: 'Thành viên',
-    },
-    {
-        number: 100,
-        content: 'Buổi training',
-    },
-    {
-        number: 5000,
-        content: 'Sinh viên tham dự training',
-        plus: true,
-    },
-    {
-        number: 10,
-        content: 'Buổi serminar',
-    },
-    {
-        number: 40000,
-        content: 'Thành viên group Ngôi nhà sẻ chia',
-        plus: true,
-    },
-];
-
-const ACTIVITIES = [
-    {
-        image: 'https://picsum.photos/id/7/500/400',
-        heading: 'Training giữa kỳ, cuối kỳ',
-        content:
-            '<b>Lorem ipsum dolor sit amet, con exercitation ullamco </b> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat ',
-    },
-    {
-        image: 'https://picsum.photos/id/10/500/400',
-        heading: 'Hoạt động gì đó',
-        content:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    },
-    {
-        image: 'https://picsum.photos/id/20/500/400',
-        heading: 'Hoạt động gì đó',
-        content:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt u',
-    },
-    {
-        image: 'https://picsum.photos/id/30/500/400',
-        heading: 'Hoạt động gì đó',
-        content:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    },
-];
 
 const MEMBERS = [
     {
@@ -134,7 +83,7 @@ const MEMBERS = [
     },
 ];
 
-function About({ statistics }) {
+function About({ statistics, activities }) {
     return (
         <DefaultLayout>
             {/* BANNER */}
@@ -177,10 +126,10 @@ function About({ statistics }) {
                         <h2 className="text-3xl font-semibold uppercase text-primary">HOẠT ĐỘNG</h2>
                     </header>
                     <div className="">
-                        {ACTIVITIES.map((activity, index) => (
+                        {activities?.map((activity, index) => (
                             <div
                                 key={index}
-                                className={clsx('my-20 flex sm:my-10 sm:flex-col', {
+                                className={clsx('my-20 flex sm:my-14 sm:flex-col', {
                                     'flex-row-reverse sm:flex-col': index % 2 !== 0,
                                 })}
                             >
@@ -196,11 +145,10 @@ function About({ statistics }) {
                                         'ml-8 md:ml-4 sm:ml-0': index % 2 === 0,
                                     })}
                                 >
-                                    <h3 className="text-2xl font-bold text-primary">{activity.heading}</h3>
-                                    <div
-                                        className="text-lg md:text-base"
-                                        dangerouslySetInnerHTML={{ __html: activity.content }}
-                                    ></div>
+                                    <h3 className="mb-3 text-2xl font-bold text-primary">{activity.heading}</h3>
+                                    <div className="text-lg md:text-base">
+                                        <ParseNotionPageContent>{activity.content}</ParseNotionPageContent>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -275,8 +223,60 @@ export async function getStaticProps(context) {
         console.log(error);
     }
 
+    let activities = [];
+    try {
+        const res = await fetch(`${process.env.NOTION_API}/databases/${process.env.ACTIVITES_DB_ID}/query`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Content-Type': 'application/json',
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+            body: JSON.stringify({
+                sorts: [
+                    {
+                        property: 'index',
+                        direction: 'ascending',
+                    },
+                ],
+            }),
+        });
+        const data = await res.json();
+        activities = data?.results?.map((item) => ({
+            heading: item?.properties?.heading?.title?.[0]?.plain_text || null,
+            image: item?.properties?.images?.files?.[0]?.file?.url || null,
+            idPage: item?.id,
+        }));
+
+        let promiseFetchPage = activities.map(
+            (activity) =>
+                new Promise(async (resolve, reject) => {
+                    try {
+                        const res = await fetch(
+                            `${process.env.NOTION_API}/blocks/${activity.idPage}/children?page_size=100`,
+                            {
+                                headers: {
+                                    Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                                    'Content-Type': 'application/json',
+                                    'Notion-Version': process.env.NOTION_VERSION,
+                                },
+                            }
+                        );
+                        const data = await res.json();
+                        resolve({ ...activity, content: data.results });
+                    } catch (error) {
+                        console.log(error);
+                        reject(error);
+                    }
+                })
+        );
+        activities = await Promise.all(promiseFetchPage);
+    } catch (error) {
+        console.log(error);
+    }
+
     return {
-        props: { statistics },
+        props: { statistics, activities },
         revalidate: 1,
     };
 }
