@@ -273,6 +273,7 @@ export async function getStaticProps(context) {
         activities = await Promise.all(promiseFetchPage);
     } catch (error) {
         console.log(error);
+        activities = null;
     }
 
     return {
