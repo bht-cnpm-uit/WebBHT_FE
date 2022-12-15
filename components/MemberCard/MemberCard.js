@@ -21,7 +21,10 @@ function MemberCard({ member }) {
                     tabIndex={0}
                     className="m-3 h-24 w-24 overflow-hidden rounded-full ring-primary ring-offset-2 sm:m-2 sm:h-20 sm:w-20 can-hover:group-hover:ring-2"
                 >
-                    <img src={member.image} className="h-full w-full object-cover" />
+                    <img
+                        src={member.image || '/images/avatar_placeholder.png'}
+                        className="h-full w-full object-cover"
+                    />
                 </div>
 
                 {/* FLOATING CARD */}
@@ -35,17 +38,23 @@ function MemberCard({ member }) {
                     className="invisible top-full z-member-card flex min-w-[260px] flex-col items-center rounded-md border bg-bg px-3 py-6 opacity-0 shadow transition-opacity can-hover:group-hover:visible can-hover:group-hover:opacity-100"
                 >
                     <div className="h-32 w-32 overflow-hidden rounded-full">
-                        <img src={member.image} className="h-full w-full object-cover" />
+                        <img
+                            src={member.image || '/images/avatar_placeholder.png'}
+                            className="h-full w-full object-cover"
+                        />
                     </div>
                     <p className="mt-4 text-lg font-semibold text-primary">{member.name}</p>
-                    <p className="mt-2">{member.desciption}</p>
+                    <p className="mt-2">{member.role}</p>
                 </div>
 
                 {/* DIALOG PANEL */}
                 <div className="invisible fixed inset-0 z-dialog flex items-center justify-center bg-black/50 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 can-hover:hidden">
                     <div className=" flex min-w-[260px] flex-col items-center rounded-md bg-bg px-3 py-6" tabIndex={0}>
                         <div className="h-32 w-32 overflow-hidden rounded-full">
-                            <img src={member.image} className="h-full w-full object-cover" />
+                            <img
+                                src={member.image || '/images/avatar_placeholder.png'}
+                                className="h-full w-full object-cover"
+                            />
                         </div>
                         <p className="mt-4 text-lg font-semibold text-primary">{member.name}</p>
                         <p className="mt-2">{member.desciption}</p>

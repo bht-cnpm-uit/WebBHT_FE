@@ -73,7 +73,6 @@ function ParseNotionBulletBlock({ children }) {
 }
 
 function ParseNotionPageContent({ children }) {
-    console.log(children);
     return (
         <div>
             {children?.map((notionObj, index) => {

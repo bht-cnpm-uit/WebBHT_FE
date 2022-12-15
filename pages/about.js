@@ -4,86 +4,9 @@ import Button from '../components/Button';
 import MemberCard from '../components/MemberCard/MemberCard';
 import ParseNotionPageContent from '../components/ParseNotionPageContent/ParseNotionPageContent';
 import DefaultLayout from '../layouts/DefaultLayout';
+import groupBy from '../utils/groupBy';
 
-const MEMBERS = [
-    {
-        year: '2020',
-        members: [
-            {
-                name: 'Bùi Tống Minh Châu',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-        ],
-    },
-    {
-        year: '2021',
-        members: [
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-        ],
-    },
-    {
-        year: '2022',
-        members: [
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-            {
-                name: 'Nguyễn Văn A',
-                desciption: 'Thành viên',
-                image: 'https://picsum.photos/id/30/100/100',
-            },
-        ],
-    },
-];
-
-function About({ statistics, activities }) {
+function About({ statistics, activities, members }) {
     return (
         <DefaultLayout>
             {/* BANNER */}
@@ -163,28 +86,30 @@ function About({ statistics, activities }) {
                         <h2 className="text-3xl font-semibold uppercase text-primary">THÀNH VIÊN</h2>
                     </header>
                     <div className="mt-10 flex w-full flex-col items-center">
-                        {MEMBERS.map((item, index) => (
-                            <div key={index} className="mt-5 w-full">
-                                <div className="mb-2 text-center text-4xl font-extrabold tracking-widest text-primary">
-                                    {item.year}
-                                </div>
-                                <div className="relative">
-                                    {/* LINE */}
-                                    <div className="absolute top-0 bottom-0 left-1/2 w-0 border-r border-primary">
-                                        <div className="absolute top-0 left-0 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-bg"></div>
+                        {Object.keys(members)
+                            ?.sort((a, b) => Number(a) - Number(b))
+                            ?.map((year, index) => (
+                                <div key={index} className="mt-5 w-full">
+                                    <div className="mb-2 text-center text-3xl font-extrabold tracking-widest text-primary">
+                                        {year}
                                     </div>
+                                    <div className="relative">
+                                        {/* LINE */}
+                                        <div className="absolute top-0 bottom-0 left-1/2 w-0 border-r border-primary">
+                                            <div className="absolute top-0 left-0 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-bg"></div>
+                                        </div>
 
-                                    {/* CARDS */}
-                                    <div className="relative pt-8 pb-10">
-                                        <div className="flex flex-wrap justify-center bg-bg py-1">
-                                            {item.members.map((member, index) => (
-                                                <MemberCard member={member} key={index} />
-                                            ))}
+                                        {/* CARDS */}
+                                        <div className="relative pt-8 pb-10">
+                                            <div className="flex flex-wrap justify-center bg-bg py-1">
+                                                {members?.[year]?.map((member, index) => (
+                                                    <MemberCard member={member} key={index} />
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                     </div>
                 </div>
             </div>
@@ -221,6 +146,7 @@ export async function getStaticProps(context) {
         }));
     } catch (error) {
         console.log(error);
+        statistics = null;
     }
 
     let activities = [];
@@ -276,8 +202,43 @@ export async function getStaticProps(context) {
         activities = null;
     }
 
+    let members = [];
+    try {
+        const res = await fetch(`${process.env.NOTION_API}/databases/${process.env.MEMBERS_DB_ID}/query`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Content-Type': 'application/json',
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+            body: JSON.stringify({
+                sorts: [
+                    {
+                        property: 'year',
+                        direction: 'ascending',
+                    },
+                    {
+                        property: 'index',
+                        direction: 'ascending',
+                    },
+                ],
+            }),
+        });
+        const data = await res.json();
+        members = data?.results?.map((item) => ({
+            name: item?.properties?.name?.title?.[0]?.plain_text,
+            year: Number(item?.properties?.year?.select?.name),
+            image: item?.properties?.images?.files?.[0]?.file?.url || null,
+            role: item?.properties?.role?.select?.name || null,
+        }));
+        members = groupBy(members, 'year');
+    } catch (error) {
+        console.log(error);
+        members = null;
+    }
+    console.log(members);
     return {
-        props: { statistics, activities },
+        props: { statistics, activities, members },
         revalidate: 1,
     };
 }
