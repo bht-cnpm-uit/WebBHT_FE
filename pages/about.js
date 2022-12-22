@@ -5,6 +5,7 @@ import MemberCard from '../components/MemberCard/MemberCard';
 import ParseNotionPageContent from '../components/ParseNotionPageContent/ParseNotionPageContent';
 import DefaultLayout from '../layouts/DefaultLayout';
 import groupBy from '../utils/groupBy';
+import { getImageFromProperty } from '../utils/notionTool';
 
 function About({ statistics, activities, members }) {
     return (
@@ -139,10 +140,10 @@ export async function getStaticProps(context) {
             }),
         });
         const data = await res.json();
-        statistics = data?.results?.map((item) => ({
-            number: item?.properties?.number?.number,
-            content: item?.properties?.name?.title?.[0]?.plain_text,
-            plus: item?.properties?.over?.checkbox,
+        statistics = data?.results?.map((page) => ({
+            number: page?.properties?.number?.number,
+            content: page?.properties?.name?.title?.[0]?.plain_text,
+            plus: page?.properties?.over?.checkbox,
         }));
     } catch (error) {
         console.log(error);
@@ -168,10 +169,10 @@ export async function getStaticProps(context) {
             }),
         });
         const data = await res.json();
-        activities = data?.results?.map((item) => ({
-            heading: item?.properties?.heading?.title?.[0]?.plain_text || null,
-            image: item?.properties?.images?.files?.[0]?.file?.url || null,
-            idPage: item?.id,
+        activities = data?.results?.map((page) => ({
+            heading: page?.properties?.heading?.title?.[0]?.plain_text || null,
+            image: getImageFromProperty(page?.properties?.images),
+            idPage: page?.id,
         }));
 
         let promiseFetchPage = activities.map(
@@ -225,18 +226,17 @@ export async function getStaticProps(context) {
             }),
         });
         const data = await res.json();
-        members = data?.results?.map((item) => ({
-            name: item?.properties?.name?.title?.[0]?.plain_text,
-            year: Number(item?.properties?.year?.select?.name),
-            image: item?.properties?.images?.files?.[0]?.file?.url || null,
-            role: item?.properties?.role?.select?.name || null,
+        members = data?.results?.map((page) => ({
+            name: page?.properties?.name?.title?.[0]?.plain_text,
+            year: Number(page?.properties?.year?.select?.name),
+            image: getImageFromProperty(page?.properties?.images),
+            role: page?.properties?.role?.select?.name || null,
         }));
         members = groupBy(members, 'year');
     } catch (error) {
         console.log(error);
         members = null;
     }
-    console.log(members);
     return {
         props: { statistics, activities, members },
         revalidate: 1,
