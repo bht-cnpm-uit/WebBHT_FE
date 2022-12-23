@@ -52,7 +52,7 @@ function About({ statistics, activities, members }) {
                 </div>
                 <div className="my-6 -mx-5 flex flex-wrap justify-center xs:mx-0">
                     {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0">
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0 xs:py-7">
                         <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-red-500 transition group-hover:bg-gray-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ function About({ statistics, activities, members }) {
                     </div>
 
                     {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0">
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0 xs:py-7">
                         <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-blue-500 transition group-hover:bg-gray-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@ function About({ statistics, activities, members }) {
                     </div>
 
                     {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0">
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0 xs:py-7">
                         <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-orange-500 transition group-hover:bg-gray-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ function About({ statistics, activities, members }) {
                     </div>
 
                     {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0">
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0 xs:py-7">
                         <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-violet-500 transition group-hover:bg-gray-200">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
