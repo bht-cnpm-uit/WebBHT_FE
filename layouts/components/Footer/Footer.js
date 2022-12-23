@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 function Footer() {
     return (
-        <footer className="border-t py-10">
-            <div className="mx-auto flex max-w-container px-p-body md:flex-col xs:max-w-none">
+        <footer className="border-t py-10 px-p-body">
+            <div className="mx-auto flex max-w-container md:flex-col xs:max-w-none">
                 <div className="mr-4 flex flex-col md:mb-8 md:mr-0 md:w-full md:items-center md:text-center">
                     <img src="/images/logo.png" className="h-9 w-9" />
                     <div className="mt-2">
