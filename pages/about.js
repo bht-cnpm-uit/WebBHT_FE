@@ -43,17 +43,136 @@ function About({ statistics, activities, members }) {
                 </div>
             </div>
 
+            {/* Section THEO DOI */}
+            <div className="overflow-hidden px-p-body py-10">
+                <div className="mx-auto max-w-container xs:max-w-none">
+                    <header className="w-full text-center">
+                        <h2 className="text-3xl font-semibold uppercase text-primary">Theo dõi BHT</h2>
+                    </header>
+                </div>
+                <div className="my-6 -mx-5 flex flex-wrap justify-center xs:mx-0">
+                    {/* CARD */}
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0">
+                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-red-500 transition group-hover:bg-gray-200">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="h-16 w-16"
+                            >
+                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <div className="flex flex-col items-center xs:ml-4 xs:flex-1">
+                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
+                                Youtube BHTCNPM
+                            </div>
+                            <div className="mt-1 text-center xs:text-left">
+                                lorem ipsum dolor sit amet cum dolor sit amet consectetuer adip fasf ads fsa dfsaf
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0">
+                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-blue-500 transition group-hover:bg-gray-200">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="h-16 w-16"
+                            >
+                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <div className="flex flex-col items-center xs:mr-4 xs:flex-1">
+                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
+                                Youtube BHTCNPM
+                            </div>
+                            <div className="mt-1 text-center xs:text-left">
+                                lorem ipsum dolor sit elit. lorem ipsum dolor sit amet consectetuer adip
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0">
+                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-orange-500 transition group-hover:bg-gray-200">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="h-16 w-16"
+                            >
+                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <div className="flex flex-col items-center xs:ml-4 xs:flex-1">
+                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
+                                Youtube BHTCNPM
+                            </div>
+                            <div className="mt-1 text-center xs:text-left">
+                                lorem ipsum dolor sit amt. lorem ipsum dolor sit amet consectetuer adip et consectetuer
+                                adipiscing eli consec
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CARD */}
+                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0">
+                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-violet-500 transition group-hover:bg-gray-200">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="h-16 w-16"
+                            >
+                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <div className="flex flex-col items-center xs:mr-4 xs:flex-1">
+                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
+                                Youtube BHTCNPM
+                            </div>
+                            <div className="mt-1 text-center xs:text-left">
+                                lorem ipsum dolor sit amet consectetuer adipiscing elit. lor sit amet consectetuer adip
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {/* Section HOAT DONG */}
             <div className="px-p-body py-10 xs:px-0">
                 <div className="mx-auto max-w-container xs:max-w-none">
                     <header className="w-full text-center">
                         <h2 className="text-3xl font-semibold uppercase text-primary">HOẠT ĐỘNG</h2>
                     </header>
-                    <div className="">
+                    <div className="mt-16 space-y-20">
                         {activities?.map((activity, index) => (
                             <div
                                 key={index}
-                                className={clsx('my-20 flex sm:my-14 sm:flex-col', {
+                                className={clsx('flex sm:my-14 sm:flex-col', {
                                     'flex-row-reverse sm:flex-col': index % 2 !== 0,
                                 })}
                             >
