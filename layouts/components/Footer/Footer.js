@@ -9,12 +9,12 @@ function Footer() {
                     <div className="mt-2">
                         {/* FETCH FORM NOTION */}
                         <div className="flex flex-col md:items-center">
-                            <p>lorem ipsum dolor sit amet consecte fsad fsad fsad fsad fsad fastuer adipiscing elit</p>
+                            <p>lorem ipsum dolor sit amet consecte fsad fsad fs</p>
                             <p>lorem ipsum dolor sit amet c</p>
                         </div>
                     </div>
                 </div>
-                <div className="flex shrink-0 grow justify-between space-x-5 xs:flex-col xs:items-center xs:space-y-8 xs:space-x-0 ">
+                <div className="flex shrink-0 grow justify-around space-x-5 md:justify-between xs:flex-col xs:items-center xs:space-y-8 xs:space-x-0 ">
                     <div className="xs:text-center">
                         <p className="font-bold">Truy cập nhanh</p>
                         <div className="mt-1">
@@ -34,7 +34,7 @@ function Footer() {
                         <div className="mt-1">
                             <div className="py-1">example@gmail.com</div>
                             <div className="py-1">facebook.com/example</div>
-                            <div className="py-1">sdfa fd df saf sa fas fasdsaf sadsfas</div>
+                            <div className="py-1">sdfa fd df saf sa fas</div>
                         </div>
                     </div>
                     <div className="xs:text-center">
