@@ -7,6 +7,7 @@ import DefaultLayout from '../layouts/DefaultLayout';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import ParseNotionPageContent from '../components/ParseNotionPageContent/ParseNotionPageContent';
 
 const SLIDES = [
     {
@@ -23,7 +24,7 @@ const SLIDES = [
     },
 ];
 
-function Home() {
+function Home({ heroHeadingAndDescription }) {
     const swiperRef = useRef(null);
 
     // Thay thế cho autoplay (vì autoplay của swiper có bug), NÓ CHẠY TỐT, ĐỪNG ĐỘNG VÀO
@@ -44,9 +45,11 @@ function Home() {
                     {/* CONTENT */}
                     <div className="mr-7 w-1/2 space-y-6 md:w-full sm:px-p-body">
                         <div>
-                            <h2 className="text-3xl font-bold text-primary">
-                                BAN HỌC TẬP <br /> ĐOÀN KHOA CÔNG NGHỆ PHẦN MỀM
-                            </h2>
+                            {/* HEADING */}
+                            <h2
+                                className="text-3xl font-bold text-primary"
+                                dangerouslySetInnerHTML={{ __html: heroHeadingAndDescription?.heading }}
+                            ></h2>
                             <div className="mt-3 flex space-x-2">
                                 <Button
                                     square
@@ -74,12 +77,12 @@ function Home() {
                                 </Button>
                             </div>
                         </div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat
-                        </p>
+                        {/* DESCIPTION */}
+                        <div>
+                            <ParseNotionPageContent>
+                                {heroHeadingAndDescription.description || []}
+                            </ParseNotionPageContent>
+                        </div>
                         <div className="flex space-x-2">
                             <Button lg>Nút gì đó</Button>
                             <Button outline lg>
@@ -138,3 +141,38 @@ function Home() {
 }
 
 export default Home;
+
+export async function getStaticProps(context) {
+    const heroHeadingAndDescription = {
+        heading: '',
+        description: [],
+    };
+    try {
+        let res = await fetch(`${process.env.NOTION_API}/blocks/${process.env.HERO_PAGE_ID}`, {
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+        });
+        const blockRes = await res.json();
+        heroHeadingAndDescription.heading = blockRes?.child_page?.title;
+
+        res = await fetch(`${process.env.NOTION_API}/blocks/${process.env.HERO_PAGE_ID}/children?page_size=100`, {
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+        });
+        const blockWithchilren = await res.json();
+        heroHeadingAndDescription.description = blockWithchilren?.results || [];
+
+        console.log(heroHeadingAndDescription);
+    } catch (error) {
+        console.log(error);
+    }
+
+    return {
+        props: { heroHeadingAndDescription },
+        revalidate: 1,
+    };
+}
