@@ -24,7 +24,7 @@ const SLIDES = [
     },
 ];
 
-function Home({ heroHeadingAndDescription }) {
+function Home({ heroHeadingAndDescription, buttonInHeros }) {
     const swiperRef = useRef(null);
 
     // Thay thế cho autoplay (vì autoplay của swiper có bug), NÓ CHẠY TỐT, ĐỪNG ĐỘNG VÀO
@@ -50,6 +50,8 @@ function Home({ heroHeadingAndDescription }) {
                                 className="text-3xl font-bold text-primary"
                                 dangerouslySetInnerHTML={{ __html: heroHeadingAndDescription?.heading }}
                             ></h2>
+
+                            {/* CONTACT */}
                             <div className="mt-3 flex space-x-2">
                                 <Button
                                     square
@@ -83,11 +85,14 @@ function Home({ heroHeadingAndDescription }) {
                                 {heroHeadingAndDescription.description || []}
                             </ParseNotionPageContent>
                         </div>
+
+                        {/* BUTTONS */}
                         <div className="flex space-x-2">
-                            <Button lg>Nút gì đó</Button>
-                            <Button outline lg>
-                                Nút khác nữa
-                            </Button>
+                            {buttonInHeros?.map((btn, index) => (
+                                <Button key={index} href={btn?.link || '/'} lg outline={btn.outline}>
+                                    {btn.name}
+                                </Button>
+                            ))}
                         </div>
                     </div>
 
@@ -147,6 +152,7 @@ export async function getStaticProps(context) {
         heading: '',
         description: [],
     };
+    let buttonInHeros = [];
     try {
         let res = await fetch(`${process.env.NOTION_API}/blocks/${process.env.HERO_PAGE_ID}`, {
             headers: {
@@ -166,13 +172,34 @@ export async function getStaticProps(context) {
         const blockWithchilren = await res.json();
         heroHeadingAndDescription.description = blockWithchilren?.results || [];
 
-        console.log(heroHeadingAndDescription);
+        res = await fetch(`${process.env.NOTION_API}/databases/${process.env.BUTTON_IN_HOMEPAGE_DB_ID}/query`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Content-Type': 'application/json',
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+            body: JSON.stringify({
+                sorts: [
+                    {
+                        property: 'index',
+                        direction: 'ascending',
+                    },
+                ],
+            }),
+        });
+        const data = await res.json();
+        buttonInHeros = data?.results?.map((page) => ({
+            name: page?.properties?.name?.title?.[0]?.plain_text || null,
+            link: page?.properties?.link?.rich_text?.[0]?.plain_text || '',
+            outline: page?.properties?.outline?.checkbox,
+        }));
     } catch (error) {
         console.log(error);
     }
 
     return {
-        props: { heroHeadingAndDescription },
+        props: { heroHeadingAndDescription, buttonInHeros },
         revalidate: 1,
     };
 }
