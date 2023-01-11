@@ -54,7 +54,7 @@ function Header() {
             </nav>
 
             {/* ACTION BUTTON GROUP */}
-            <div className="flex flex-1 justify-end space-x-2 md:hidden">
+            <div className="flex flex-1 justify-end md:hidden">
                 <PlatformGroup />
             </div>
 

@@ -24,10 +24,17 @@ function PlatformGroup() {
     };
 
     return (
-        <>
-            {platforms?.map((platform, index) => (
-                <Button key={index} square rounded href={platform.link} id={'platform-btn-' + index}>
-                    <style>{`
+        <div className="flex space-x-2">
+            {platforms.length === 0 ? (
+                <>
+                    <div className="h-9 w-9 animate-pulse rounded-full bg-slate-200"></div>
+                    <div className="h-9 w-9 animate-pulse rounded-full bg-slate-200"></div>
+                    <div className="h-9 w-9 animate-pulse rounded-full bg-slate-200"></div>
+                </>
+            ) : (
+                platforms?.map((platform, index) => (
+                    <Button key={index} square rounded href={platform.link} id={'platform-btn-' + index}>
+                        <style>{`
                             #platform-btn-${index} {
                                 background-color: ${platform.color};
                             }
@@ -35,15 +42,16 @@ function PlatformGroup() {
                                 background-color: ${platform.colorDark};
                             }
                         `}</style>
-                    <div
-                        className="icon h-4 w-4 text-white"
-                        dangerouslySetInnerHTML={{
-                            __html: platform.icon,
-                        }}
-                    ></div>
-                </Button>
-            ))}
-        </>
+                        <div
+                            className="icon h-4 w-4 text-white"
+                            dangerouslySetInnerHTML={{
+                                __html: platform.icon,
+                            }}
+                        ></div>
+                    </Button>
+                ))
+            )}
+        </div>
     );
 }
 

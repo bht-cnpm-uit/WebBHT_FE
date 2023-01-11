@@ -53,7 +53,7 @@ function Home({ heroHeadingAndDescription, buttonInHeros }) {
                             ></h2>
 
                             {/* Platform */}
-                            <div className="mt-3 flex space-x-2">
+                            <div className="mt-3">
                                 <PlatformGroup />
                             </div>
                         </div>
