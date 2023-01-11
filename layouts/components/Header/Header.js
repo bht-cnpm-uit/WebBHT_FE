@@ -8,6 +8,7 @@ import Button from '../../../components/Button';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import PlatformGroup from '~/components/PlatformGroup';
 
 const MENU = [
     {
@@ -33,7 +34,7 @@ function Header() {
     }, [router.asPath]);
 
     return (
-        <header className="z-header fixed flex h-h-header w-full items-center justify-between bg-bg px-p-body shadow">
+        <header className="fixed z-header flex h-h-header w-full items-center justify-between bg-bg px-p-body shadow">
             {/* LOGO */}
             <Link href="/" className="flex flex-1 items-center md:flex-initial">
                 <img src="/images/logo.png" className="h-11 w-11" alt="logo" />
@@ -54,30 +55,7 @@ function Header() {
 
             {/* ACTION BUTTON GROUP */}
             <div className="flex flex-1 justify-end space-x-2 md:hidden">
-                <Button
-                    square
-                    rounded
-                    href="https://fb.com/bhtcnpm"
-                    className="!bg-blue-500 hover:!bg-blue-600"
-                >
-                    <FontAwesomeIcon icon={faFacebookF} />
-                </Button>
-                <Button
-                    square
-                    rounded
-                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    className="!bg-red-500 hover:!bg-red-600"
-                >
-                    <FontAwesomeIcon icon={faYoutube} />
-                </Button>
-                <Button
-                    square
-                    rounded
-                    href="https://www.instagram.com/english.with.bht"
-                    className="!bg-purple-500 hover:!bg-purple-600"
-                >
-                    <FontAwesomeIcon icon={faInstagram} />
-                </Button>
+                <PlatformGroup />
             </div>
 
             {/* MOBILE GROUP */}
@@ -89,12 +67,9 @@ function Header() {
                 <div className="fixed top-0 left-0">
                     {/* BACKDROP */}
                     <div
-                        className={clsx(
-                            'fixed top-0 left-0 h-screen w-screen bg-black/50 transition duration-150',
-                            {
-                                'invisible bg-opacity-0': !openMenu,
-                            }
-                        )}
+                        className={clsx('fixed top-0 left-0 h-screen w-screen bg-black/50 transition duration-150', {
+                            'invisible bg-opacity-0': !openMenu,
+                        })}
                         onClick={() => setOpenMennu(false)}
                     ></div>
 
@@ -108,10 +83,7 @@ function Header() {
                         )}
                     >
                         <button className="inline-block" onClick={() => setOpenMennu(false)}>
-                            <FontAwesomeIcon
-                                icon={faXmark}
-                                className="absolute top-2 right-2 h-6 w-6"
-                            />
+                            <FontAwesomeIcon icon={faXmark} className="absolute top-2 right-2 h-6 w-6" />
                         </button>
 
                         {/* NAV */}

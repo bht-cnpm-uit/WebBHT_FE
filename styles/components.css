@@ -18,10 +18,14 @@
     }
 
     .btn.btn-square.btn-md {
-        @apply w-[2.25rem];
+        @apply w-[2.25rem] px-0;
     }
 
     .btn.btn-square.btn-lg {
-        @apply w-11;
+        @apply w-11 px-0;
+    }
+
+    .icon svg {
+        @apply h-full w-full fill-current stroke-current;
     }
 }

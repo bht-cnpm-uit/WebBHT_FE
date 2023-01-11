@@ -8,6 +8,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import ParseNotionPageContent from '../components/ParseNotionPageContent/ParseNotionPageContent';
+import PlatformGroup from '~/components/PlatformGroup';
 
 const SLIDES = [
     {
@@ -51,32 +52,9 @@ function Home({ heroHeadingAndDescription, buttonInHeros }) {
                                 dangerouslySetInnerHTML={{ __html: heroHeadingAndDescription?.heading }}
                             ></h2>
 
-                            {/* CONTACT */}
+                            {/* Platform */}
                             <div className="mt-3 flex space-x-2">
-                                <Button
-                                    square
-                                    rounded
-                                    href="https://fb.com/bhtcnpm"
-                                    className="!bg-blue-500 hover:!bg-blue-600"
-                                >
-                                    <FontAwesomeIcon icon={faFacebookF} />
-                                </Button>
-                                <Button
-                                    square
-                                    rounded
-                                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                    className="!bg-red-500 hover:!bg-red-600"
-                                >
-                                    <FontAwesomeIcon icon={faYoutube} />
-                                </Button>
-                                <Button
-                                    square
-                                    rounded
-                                    href="https://www.instagram.com/english.with.bht"
-                                    className="!bg-purple-500 hover:!bg-purple-600"
-                                >
-                                    <FontAwesomeIcon icon={faInstagram} />
-                                </Button>
+                                <PlatformGroup />
                             </div>
                         </div>
                         {/* DESCIPTION */}
