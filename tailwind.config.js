@@ -25,6 +25,7 @@ module.exports = {
                 header: 100,
                 dialog: 9999,
                 'member-card': 50,
+                loader: 99999,
             },
             boxShadow: {
                 test: '0 0 1px 1px red',

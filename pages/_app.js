@@ -27,7 +27,12 @@ function MyApp({ Component, pageProps }) {
         };
     }, []);
 
-    return loading ? <PageLoader /> : <Component {...pageProps} />;
+    return (
+        <>
+            <PageLoader loading={loading} />
+            <Component {...pageProps} />
+        </>
+    );
 }
 
 export default MyApp;
