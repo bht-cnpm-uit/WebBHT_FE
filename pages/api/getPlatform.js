@@ -3,7 +3,7 @@ import shadeColor from '~/utils/shadeColor';
 export default function handler(req, res) {
     const fetchPlatforms = async () => {
         try {
-            const _res = await fetch(`${process.env.NOTION_API}/databases/63eb2a581325489d8d3ca8759eb36269/query`, {
+            const _res = await fetch(`${process.env.NOTION_API}/databases/${process.env.PLATFORM_GROUP_DB_ID}/query`, {
                 method: 'POST',
                 headers: {
                     Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
