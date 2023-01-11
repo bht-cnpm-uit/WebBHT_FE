@@ -33,7 +33,7 @@ function PlatformGroup() {
                 </>
             ) : (
                 platforms?.map((platform, index) => (
-                    <Button key={index} square rounded href={platform.link} id={'platform-btn-' + index}>
+                    <Button key={index} square rounded aHref={platform.link} id={'platform-btn-' + index}>
                         <style>{`
                             #platform-btn-${index} {
                                 background-color: ${platform.color};

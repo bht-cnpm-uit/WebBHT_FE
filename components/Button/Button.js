@@ -12,6 +12,7 @@ function LinkPassComp({ className, children, ...passProps }) {
 function Button({
     children,
     href,
+    aHref,
     onClick,
     color,
     primary,
@@ -46,6 +47,12 @@ function Button({
     if (href) {
         props.href = href;
         Comp = LinkPassComp;
+    }
+    if (aHref) {
+        props.href = aHref;
+        props.target = '_blank';
+        props.rel = 'noopener noreferrer';
+        Comp = 'a';
     }
     const classes = clsx('btn', {
         'btn-contain': contain,

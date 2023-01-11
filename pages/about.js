@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Link from 'next/link';
 import { CountUp } from 'use-count-up';
 import Button from '../components/Button';
 import MemberCard from '../components/MemberCard/MemberCard';
@@ -7,7 +8,7 @@ import DefaultLayout from '../layouts/DefaultLayout';
 import groupBy from '../utils/groupBy';
 import { getImageFromProperty } from '../utils/notionTool';
 
-function About({ statistics, activities, members }) {
+function About({ statistics, activities, members, followInPlatforms }) {
     return (
         <DefaultLayout>
             {/* BANNER */}
@@ -51,114 +52,42 @@ function About({ statistics, activities, members }) {
                     </header>
                 </div>
                 <div className="my-6 -mx-5 flex flex-wrap justify-center xs:mx-0">
-                    {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0 xs:py-7">
-                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-red-500 transition group-hover:bg-gray-200">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="h-16 w-16"
+                    {followInPlatforms?.map((followInPlatform, index) => (
+                        <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            key={index}
+                            href={followInPlatform.link}
+                            className={clsx(
+                                'group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:items-start xs:px-0 xs:py-7',
+                                {
+                                    'xs:flex-row': index % 2 === 0,
+                                    'xs:flex-row-reverse': index % 2 !== 0,
+                                }
+                            )}
+                        >
+                            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 transition group-hover:bg-gray-200">
+                                <div
+                                    className="icon h-16 w-16"
+                                    style={{ color: followInPlatform.color }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: followInPlatform.icon,
+                                    }}
+                                ></div>
+                            </div>
+                            <div
+                                className={clsx('flex flex-col items-center  xs:flex-1', {
+                                    'xs:ml-4': index % 2 === 0,
+                                    'xs:mr-4': index % 2 !== 0,
+                                })}
                             >
-                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                        <div className="flex flex-col items-center xs:ml-4 xs:flex-1">
-                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
-                                Youtube BHTCNPM
+                                <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
+                                    {followInPlatform.heading}
+                                </div>
+                                <div className="mt-1 text-center xs:text-left">{followInPlatform.description}</div>
                             </div>
-                            <div className="mt-1 text-center xs:text-left">
-                                lorem ipsum dolor sit amet cum dolor sit amet consectetuer adip fasf ads fsa dfsaf
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0 xs:py-7">
-                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-blue-500 transition group-hover:bg-gray-200">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="h-16 w-16"
-                            >
-                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                        <div className="flex flex-col items-center xs:mr-4 xs:flex-1">
-                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
-                                Youtube BHTCNPM
-                            </div>
-                            <div className="mt-1 text-center xs:text-left">
-                                lorem ipsum dolor sit elit. lorem ipsum dolor sit amet consectetuer adip
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row xs:items-start xs:px-0 xs:py-7">
-                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-orange-500 transition group-hover:bg-gray-200">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="h-16 w-16"
-                            >
-                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                        <div className="flex flex-col items-center xs:ml-4 xs:flex-1">
-                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
-                                Youtube BHTCNPM
-                            </div>
-                            <div className="mt-1 text-center xs:text-left">
-                                lorem ipsum dolor sit amt. lorem ipsum dolor sit amet consectetuer adip et consectetuer
-                                adipiscing eli consec
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* CARD */}
-                    <div className="group flex w-[20rem] cursor-pointer flex-col items-center p-5 sm:w-[18rem] xs:w-full xs:flex-row-reverse xs:items-start xs:px-0 xs:py-7">
-                        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-violet-500 transition group-hover:bg-gray-200">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="h-16 w-16"
-                            >
-                                <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375z" />
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3.087 9l.54 9.176A3 3 0 006.62 21h10.757a3 3 0 002.995-2.824L20.913 9H3.087zM12 10.5a.75.75 0 01.75.75v4.94l1.72-1.72a.75.75 0 111.06 1.06l-3 3a.75.75 0 01-1.06 0l-3-3a.75.75 0 111.06-1.06l1.72 1.72v-4.94a.75.75 0 01.75-.75z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                        <div className="flex flex-col items-center xs:mr-4 xs:flex-1">
-                            <div className="mt-4 text-center text-lg font-bold transition group-hover:text-primary xs:mt-0 xs:w-full xs:text-left">
-                                Youtube BHTCNPM
-                            </div>
-                            <div className="mt-1 text-center xs:text-left">
-                                lorem ipsum dolor sit amet consectetuer adipiscing elit. lor sit amet consectetuer adip
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    ))}
                 </div>
             </div>
 
@@ -356,8 +285,39 @@ export async function getStaticProps(context) {
         console.log(error);
         members = null;
     }
+
+    let followInPlatforms = [];
+    try {
+        const res = await fetch(`${process.env.NOTION_API}/databases/81b7f75cc36f43f68aab5de516b48095/query`, {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + process.env.NOTION_TOKEN,
+                'Content-Type': 'application/json',
+                'Notion-Version': process.env.NOTION_VERSION,
+            },
+            body: JSON.stringify({
+                sorts: [
+                    {
+                        property: 'index',
+                        direction: 'ascending',
+                    },
+                ],
+            }),
+        });
+        const data = await res.json();
+        followInPlatforms = data?.results?.map((page) => ({
+            heading: page?.properties?.heading?.title?.[0]?.plain_text,
+            description: page?.properties?.description?.email || '',
+            icon: page?.properties?.icon?.email || '',
+            color: page?.properties?.color?.email || '',
+            link: page?.properties?.link?.email || '',
+        }));
+    } catch (error) {
+        console.log(error);
+        followInPlatforms = [];
+    }
     return {
-        props: { statistics, activities, members },
+        props: { statistics, activities, members, followInPlatforms },
         revalidate: 1,
     };
 }

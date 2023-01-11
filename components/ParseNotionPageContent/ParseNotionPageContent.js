@@ -21,13 +21,15 @@ function ParseNotionParagraphBlock({ children }) {
             );
         } else {
             return (
-                <Link
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key={index}
                     href={richtextObj?.href}
-                    className="font-medium text-primary underline decoration-primary hover:decoration-2"
+                    className="font-medium underline decoration-primary decoration-1 underline-offset-4 hover:decoration-2"
                 >
                     {richtextObj?.text?.content}
-                </Link>
+                </a>
             );
         }
     });
@@ -52,13 +54,15 @@ function ParseNotionBulletBlock({ children }) {
             );
         } else {
             return (
-                <Link
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
                     key={index}
                     href={richtextObj?.href}
-                    className="font-medium text-primary underline decoration-primary hover:decoration-2"
+                    className="font-medium underline decoration-primary decoration-1 underline-offset-4 hover:decoration-2"
                 >
                     {richtextObj?.text?.content}
-                </Link>
+                </a>
             );
         }
     });
