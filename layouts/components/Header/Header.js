@@ -99,32 +99,8 @@ function Header() {
                             ))}
                         </nav>
 
-                        {/* SOCIAL GROUP */}
-                        <div className="mt-4 flex justify-center space-x-2">
-                            <Button
-                                square
-                                rounded
-                                href="https://fb.com/bhtcnpm"
-                                className="!bg-blue-500 hover:!bg-blue-600"
-                            >
-                                <FontAwesomeIcon icon={faFacebookF} />
-                            </Button>
-                            <Button
-                                square
-                                rounded
-                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                className="!bg-red-500 hover:!bg-red-600"
-                            >
-                                <FontAwesomeIcon icon={faYoutube} />
-                            </Button>
-                            <Button
-                                square
-                                rounded
-                                href="https://www.instagram.com/english.with.bht"
-                                className="!bg-purple-500 hover:!bg-purple-600"
-                            >
-                                <FontAwesomeIcon icon={faInstagram} />
-                            </Button>
+                        <div className="mt-4 flex justify-center">
+                            <PlatformGroup />
                         </div>
                     </div>
                 </div>

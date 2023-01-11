@@ -66,7 +66,7 @@ function About({ statistics, activities, members, followInPlatforms }) {
                                 }
                             )}
                         >
-                            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 transition group-hover:bg-gray-200">
+                            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-gray-100 transition group-hover:bg-gray-200 xs:!bg-transparent">
                                 <div
                                     className="icon h-16 w-16"
                                     style={{ color: followInPlatform.color }}

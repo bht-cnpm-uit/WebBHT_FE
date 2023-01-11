@@ -17,7 +17,7 @@ function PageLoader({ loading }) {
             <div
                 ref={ref}
                 style={{ width: currentWidth + 'px' }}
-                className={clsx('loading-bar h-0.5 bg-primary opacity-0', {
+                className={clsx('loading-bar h-0.5 bg-primary opacity-0 sm:h-1', {
                     loading: loading,
                     loaded: !loading,
                 })}
